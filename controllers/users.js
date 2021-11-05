@@ -166,7 +166,7 @@ module.exports = {
             }
 
             const token = await generateJWT(dbUser.id);
-
+            
             res.status(200).json({
                 ok: true,
                 token,

@@ -12,14 +12,16 @@ module.exports = {
         }
 
         try {
+            
             jwt.verify(token, process.env.JWT_SECRET_KEY);
-            next();
-        } catch (error) {
 
+        } catch (error) {
+            
             res.status(401).json({
                 ok: false,
                 msg: 'Invalid token provided'
             })
         }
+        next();
     }
 }

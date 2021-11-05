@@ -6,11 +6,14 @@ const { getHospitals, createHospital, editHospital, deleteHospital } = require('
 const { check } = require('express-validator');
 const { validateFields } = require('../middlewares/validate-fields');
 const { validateJWT } = require('../middlewares/validate-jwt');
+const { validateUID } = require('../middlewares/validate-uid');
+
 
 router.get('/', validateJWT, getHospitals );
 router.post('/',
     [
         validateJWT,
+        validateUID,
         check('name', 'Name is required').not().isEmpty(),
         validateFields
     ],

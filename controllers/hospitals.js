@@ -1,5 +1,6 @@
 const { response } = require('express');
 const Hospital = require('../models/hospital');
+
 module.exports = {
     getHospitals: async (req, res = response) => {
 
@@ -9,10 +10,22 @@ module.exports = {
         })
     },
     createHospital: async (req, res = response) => {
+        const uid = req.header('x-uid');
 
-        const newHospital = new Hospital(req.body);
+        const newHospital = new Hospital({
+            user: uid,
+            ...req.body
+        });
 
         try {
+
+            const savedHospital = await newHospital.save();
+
+            res.status(200).json({
+                ok: true,
+                msg: 'Hospital created',
+                savedHospital
+            })
             
         } catch (error) {
             res.status(500).json({
@@ -21,13 +34,7 @@ module.exports = {
                 error
             })
         }
-        await newHospital.save()
 
-        res.status(200).json({
-            ok: true,
-            msg: 'Hospital created',
-            newHospital
-        })
     },
     editHospital: async (req, res = response) => {
         res.status(200).json({

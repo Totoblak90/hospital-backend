@@ -12,7 +12,7 @@ module.exports = {
                     console.log(err);
                     reject( err )
                 }
-                resolve(token);
+                resolve({token, payload});
             })
         })
     }
