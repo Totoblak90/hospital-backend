@@ -12,9 +12,10 @@ module.exports = {
         }
 
         try {
-            jwt.verify(token, process.env.JWT_SECRET_KEY)
+            jwt.verify(token, process.env.JWT_SECRET_KEY);
             next();
         } catch (error) {
+
             res.status(401).json({
                 ok: false,
                 msg: 'Invalid token provided'

@@ -18,6 +18,9 @@ dbConnection();
 
 // Routes
 app.use('/api/users', require('./routes/users'));
+app.use('/api/hospitals', require('./routes/hospitals'));
+app.use('/api/doctors', require('./routes/doctors'));
+
 
 app.listen(process.env.PORT, () => {
     console.log('Server listening in port ' + process.env.PORT)
