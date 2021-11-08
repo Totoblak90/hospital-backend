@@ -1,3 +1,7 @@
-# Hospital App - Backend
+# AdminPro - Backend
 
-Execute npm i to install dependencies
+Recuerden ejecutar 
+
+```
+npm install
+```

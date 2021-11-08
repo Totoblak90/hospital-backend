@@ -1,7 +1,8 @@
 const { Schema, model } = require('mongoose');
 
-const UserSchema = Schema({
-    fullName: {
+const UsuarioSchema = Schema({
+
+    nombre: {
         type: String,
         required: true
     },
@@ -12,10 +13,10 @@ const UserSchema = Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
     img: {
-        type: String
+        type: String,
     },
     role: {
         type: String,
@@ -25,14 +26,16 @@ const UserSchema = Schema({
     google: {
         type: Boolean,
         default: false
-    }
+    },
 });
 
-// Change some keys identifiers of the response object and never send the password to the front end
-UserSchema.method('toJSON', function() {
+
+UsuarioSchema.method('toJSON', function() {
     const { __v, _id, password, ...object } = this.toObject();
-    object.id = _id;
+    object.uid = _id;
     return object;
 })
 
-module.exports = model('User', UserSchema);
+
+
+module.exports = model( 'Usuario', UsuarioSchema );
